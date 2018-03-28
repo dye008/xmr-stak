@@ -9,7 +9,8 @@ enum xmrstak_algo
 	cryptonight = 1,
 	cryptonight_lite = 2,
 	cryptonight_monero = 3,
-	cryptonight_heavy = 4
+	cryptonight_heavy = 4,
+	cryptonight_monero_xtl = 5
 };
 
 // define aeon settings
@@ -38,6 +39,9 @@ template<>
 inline constexpr size_t cn_select_memory<cryptonight_monero>() { return CRYPTONIGHT_MEMORY; }
 
 template<>
+inline constexpr size_t cn_select_memory<cryptonight_monero_xtl>() { return CRYPTONIGHT_MEMORY; }
+
+template<>
 inline constexpr size_t cn_select_memory<cryptonight_heavy>() { return CRYPTONIGHT_HEAVY_MEMORY; }
 
 
@@ -50,6 +54,8 @@ inline size_t cn_select_memory(xmrstak_algo algo)
 	case cryptonight_lite:
 		return CRYPTONIGHT_LITE_MEMORY;
 	case cryptonight_monero:
+		return CRYPTONIGHT_MEMORY;
+	case cryptonight_monero_xtl:
 		return CRYPTONIGHT_MEMORY;
 	case cryptonight_heavy:
 		return CRYPTONIGHT_HEAVY_MEMORY;
@@ -71,6 +77,9 @@ template<>
 inline constexpr uint32_t cn_select_mask<cryptonight_monero>() { return CRYPTONIGHT_MASK; }
 
 template<>
+inline constexpr uint32_t cn_select_mask<cryptonight_monero_xtl>() { return CRYPTONIGHT_MASK; }
+
+template<>
 inline constexpr uint32_t cn_select_mask<cryptonight_heavy>() { return CRYPTONIGHT_HEAVY_MASK; }
 
 inline size_t cn_select_mask(xmrstak_algo algo)
@@ -82,6 +91,8 @@ inline size_t cn_select_mask(xmrstak_algo algo)
 	case cryptonight_lite:
 		return CRYPTONIGHT_LITE_MASK;
 	case cryptonight_monero:
+		return CRYPTONIGHT_MASK;
+	case cryptonight_monero_xtl:
 		return CRYPTONIGHT_MASK;
 	case cryptonight_heavy:
 		return CRYPTONIGHT_HEAVY_MASK;
@@ -103,6 +114,9 @@ template<>
 inline constexpr uint32_t cn_select_iter<cryptonight_monero>() { return CRYPTONIGHT_ITER; }
 
 template<>
+inline constexpr uint32_t cn_select_iter<cryptonight_monero_xtl>() { return CRYPTONIGHT_ITER; }
+
+template<>
 inline constexpr uint32_t cn_select_iter<cryptonight_heavy>() { return CRYPTONIGHT_HEAVY_ITER; }
 
 inline size_t cn_select_iter(xmrstak_algo algo)
@@ -114,6 +128,8 @@ inline size_t cn_select_iter(xmrstak_algo algo)
 	case cryptonight_lite:
 		return CRYPTONIGHT_LITE_ITER;
 	case cryptonight_monero:
+		return CRYPTONIGHT_ITER;
+	case cryptonight_monero_xtl:
 		return CRYPTONIGHT_ITER;
 	case cryptonight_heavy:
 		return CRYPTONIGHT_HEAVY_ITER;

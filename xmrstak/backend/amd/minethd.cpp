@@ -193,7 +193,7 @@ void minethd::work_main()
 	cpu_ctx = cpu::minethd::minethd_alloc_ctx();
 	auto miner_algo = ::jconf::inst()->GetMiningAlgo();
 	cn_hash_fun hash_fun;
-	if(miner_algo == cryptonight_monero || miner_algo == cryptonight_heavy)
+	if(miner_algo == cryptonight_monero || miner_algo == cryptonight_heavy || miner_algo == cryptonight_monero_xtl)
 	{
 		// start with cryptonight and switch later if fork version is reached
 		hash_fun = cpu::minethd::func_selector(::jconf::inst()->HaveHardwareAes(), true /*bNoPrefetch*/, cryptonight);
@@ -223,7 +223,13 @@ void minethd::work_main()
 			{
 				hash_fun = cpu::minethd::func_selector(::jconf::inst()->HaveHardwareAes(), true /*bNoPrefetch*/, cryptonight_monero);
 			}
+			else if(miner_algo == cryptonight_monero_xtl && version < 3 && new_version >= 3)
+			{
+				hash_fun = cpu::minethd::func_selector(::jconf::inst()->HaveHardwareAes(), true /*bNoPrefetch*/, cryptonight_monero_xtl);
+			}
+
 			else if(miner_algo == cryptonight_heavy && version < 3 && new_version >= 3)
+
 			{
 				hash_fun = cpu::minethd::func_selector(::jconf::inst()->HaveHardwareAes(), true /*bNoPrefetch*/, cryptonight_heavy);
 			}
@@ -285,6 +291,11 @@ void minethd::work_main()
 		{
 			hash_fun = cpu::minethd::func_selector(::jconf::inst()->HaveHardwareAes(), true /*bNoPrefetch*/, cryptonight_monero);
 		}
+		else if(miner_algo == cryptonight_monero && version < 3 && new_version >= 3)
+		{
+			hash_fun = cpu::minethd::func_selector(::jconf::inst()->HaveHardwareAes(), true /*bNoPrefetch*/, cryptonight_monero_xtl);
+		}
+
 		else if(miner_algo == cryptonight_heavy && version < 3 && new_version >= 3)
 		{
 			hash_fun = cpu::minethd::func_selector(::jconf::inst()->HaveHardwareAes(), true /*bNoPrefetch*/, cryptonight_heavy);

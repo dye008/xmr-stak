@@ -644,6 +644,9 @@ bool jpsock::cmd_submit(const char* sJobId, uint32_t iNonce, const uint8_t* bRes
 		case cryptonight_monero:
 			algo_name = "cryptonight-monero";
 			break;
+		case cryptonight_monero_xtl:
+			algo_name = "cryptonight-monero-xtl";
+			break;
 		default:
 			algo_name = "unknown";
 			break;

@@ -291,7 +291,7 @@ void minethd::work_main()
 		{
 			hash_fun = cpu::minethd::func_selector(::jconf::inst()->HaveHardwareAes(), true /*bNoPrefetch*/, cryptonight_monero);
 		}
-		else if(miner_algo == cryptonight_monero && version < 3 && new_version >= 3)
+		else if(miner_algo == cryptonight_monero_xtl && version < 3 && new_version >= 3)
 		{
 			hash_fun = cpu::minethd::func_selector(::jconf::inst()->HaveHardwareAes(), true /*bNoPrefetch*/, cryptonight_monero_xtl);
 		}
